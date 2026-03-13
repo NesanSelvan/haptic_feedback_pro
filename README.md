@@ -61,14 +61,6 @@ await HapticFeedbackPro.trigger(FeedbackType.vibration);
 
 ---
 
-## ⚙️ Requirements
-
-- 🍎 **iOS:** 10.0+
-- 🤖 **Android:** API 16+ (haptic effects require API 26+)
-- 💙 **Flutter:** 3.0+
-
----
-
 ## 🌟 Built By
 
 Enjoyed this package? Check out the app we built it for 🚀

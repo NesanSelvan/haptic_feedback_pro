@@ -1,3 +1,7 @@
+## 1.0.2
+
+* Updated README section
+
 ## 1.0.1
 
 * Fixed Android haptic not working — added missing `VIBRATE` permission to `AndroidManifest.xml`

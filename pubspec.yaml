@@ -1,6 +1,6 @@
 name: haptic_feedback_pro
 description: "A Flutter plugin for triggering rich haptic feedback on iOS and Android. Supports impact, notification, selection, and full vibration types."
-version: 1.0.1
+version: 1.0.2
 homepage: https://nutriscan.app
 repository: https://github.com/NesanSelvan/haptic_feedback_pro
 issue_tracker: https://github.com/NesanSelvan/haptic_feedback_pro/issues
