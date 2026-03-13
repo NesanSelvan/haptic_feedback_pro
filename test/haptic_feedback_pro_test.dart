@@ -7,23 +7,37 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 class MockHapticFeedbackProPlatform
     with MockPlatformInterfaceMixin
     implements HapticFeedbackProPlatform {
+  String? lastTriggered;
 
   @override
-  Future<String?> getPlatformVersion() => Future.value('42');
+  Future<void> trigger(String feedbackType) async {
+    lastTriggered = feedbackType;
+  }
 }
 
 void main() {
-  final HapticFeedbackProPlatform initialPlatform = HapticFeedbackProPlatform.instance;
+  final HapticFeedbackProPlatform initialPlatform =
+      HapticFeedbackProPlatform.instance;
 
-  test('$MethodChannelHapticFeedbackPro is the default instance', () {
+  test('MethodChannelHapticFeedbackPro is the default instance', () {
     expect(initialPlatform, isInstanceOf<MethodChannelHapticFeedbackPro>());
   });
 
-  test('getPlatformVersion', () async {
-    HapticFeedbackPro hapticFeedbackProPlugin = HapticFeedbackPro();
-    MockHapticFeedbackProPlatform fakePlatform = MockHapticFeedbackProPlatform();
-    HapticFeedbackProPlatform.instance = fakePlatform;
+  group('HapticFeedbackPro.trigger', () {
+    late HapticFeedbackPro plugin;
+    late MockHapticFeedbackProPlatform mock;
 
-    expect(await hapticFeedbackProPlugin.getPlatformVersion(), '42');
+    setUp(() {
+      plugin = HapticFeedbackPro();
+      mock = MockHapticFeedbackProPlatform();
+      HapticFeedbackProPlatform.instance = mock;
+    });
+
+    for (final type in FeedbackType.values) {
+      test('triggers ${type.name}', () async {
+        await plugin.trigger(type);
+        expect(mock.lastTriggered, type.name);
+      });
+    }
   });
 }
