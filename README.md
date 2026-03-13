@@ -69,12 +69,12 @@ await HapticFeedbackPro.trigger(FeedbackType.vibration);
 
 ---
 
-## 📄 License
+## 🌟 Built By
 
-MIT
+Enjoyed this package? Built by the team behind [NutriScan](https://nutriscan.app/) 🚀
 
 ---
 
-## 🌟 Built By
+## 📄 License
 
-Enjoyed this package? Built by the team behind [NutriScan](https://nutriscan.app/)
+MIT
