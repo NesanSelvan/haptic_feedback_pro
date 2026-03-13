@@ -4,9 +4,7 @@ A Flutter plugin for triggering rich haptic feedback on iOS and Android.
 
 Supports all native haptic types — impact, notification, selection, and full vibration. 🎯
 
-<p align="center">
-  <img src="screenshots/preview.png" alt="Haptic Feedback Pro Preview" width="320"/>
-</p>
+> 🌟 Enjoyed this package? Built by the team behind [🥗 NutriScan](https://nutriscan.app/)
 
 ---
 
@@ -40,32 +38,28 @@ flutter pub get
 ```dart
 import 'package:haptic_feedback_pro/haptic_feedback_pro.dart';
 
-final haptic = HapticFeedbackPro();
-
 // Trigger any feedback type
-await haptic.trigger(FeedbackType.success);
-await haptic.trigger(FeedbackType.heavy);
-await haptic.trigger(FeedbackType.vibration);
+await HapticFeedbackPro.trigger(FeedbackType.success);
+await HapticFeedbackPro.trigger(FeedbackType.heavy);
+await HapticFeedbackPro.trigger(FeedbackType.vibration);
 ```
 
 ---
 
 ## 🎛️ Feedback Types
 
-| Type | Description | iOS | Android |
-|------|-------------|-----|---------|
-| `FeedbackType.light` | 🪶 Light impact | `UIImpactFeedbackGenerator(.light)` | `EFFECT_TICK` |
-| `FeedbackType.medium` | 👆 Medium impact | `UIImpactFeedbackGenerator(.medium)` | `EFFECT_CLICK` |
-| `FeedbackType.heavy` | 💪 Heavy impact | `UIImpactFeedbackGenerator(.heavy)` | `EFFECT_HEAVY_CLICK` |
-| `FeedbackType.soft` | 🫧 Soft impact *(iOS 13+)* | `UIImpactFeedbackGenerator(.soft)` | `EFFECT_TICK` |
-| `FeedbackType.rigid` | 🪨 Rigid impact *(iOS 13+)* | `UIImpactFeedbackGenerator(.rigid)` | `EFFECT_HEAVY_CLICK` |
-| `FeedbackType.success` | ✅ Success notification | `UINotificationFeedbackGenerator(.success)` | `EFFECT_DOUBLE_CLICK` |
-| `FeedbackType.warning` | ⚠️ Warning notification | `UINotificationFeedbackGenerator(.warning)` | Waveform pattern |
-| `FeedbackType.error` | ❌ Error notification | `UINotificationFeedbackGenerator(.error)` | Waveform pattern |
-| `FeedbackType.selection` | 🔘 Selection change | `UISelectionFeedbackGenerator` | `EFFECT_TICK` |
-| `FeedbackType.vibration` | 📳 Full device vibration | `AudioServicesPlaySystemSound` | `createOneShot(400ms)` |
-
-> ⚠️ **Note:** Android predefined effects require API 29+. Devices below API 26 will skip silently.
+| Type | Description |
+|------|-------------|
+| `FeedbackType.light` | 🪶 Light impact |
+| `FeedbackType.medium` | 👆 Medium impact |
+| `FeedbackType.heavy` | 💪 Heavy impact |
+| `FeedbackType.soft` | 🫧 Soft impact |
+| `FeedbackType.rigid` | 🪨 Rigid impact |
+| `FeedbackType.success` | ✅ Success notification |
+| `FeedbackType.warning` | ⚠️ Warning notification |
+| `FeedbackType.error` | ❌ Error notification |
+| `FeedbackType.selection` | 🔘 Selection change |
+| `FeedbackType.vibration` | 📳 Full device vibration |
 
 ---
 
