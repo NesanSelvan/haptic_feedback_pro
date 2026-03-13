@@ -4,8 +4,6 @@ A Flutter plugin for triggering rich haptic feedback on iOS and Android.
 
 Supports all native haptic types — impact, notification, selection, and full vibration. 🎯
 
-> 🌟 Enjoyed this package? Built by the team behind [🥗 NutriScan](https://nutriscan.app/)
-
 ---
 
 ## 📱 Platform Support
@@ -74,3 +72,9 @@ await HapticFeedbackPro.trigger(FeedbackType.vibration);
 ## 📄 License
 
 MIT
+
+---
+
+## 🌟 Built By
+
+Enjoyed this package? Built by the team behind [NutriScan](https://nutriscan.app/)
