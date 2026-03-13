@@ -75,7 +75,7 @@ Enjoyed this package? Check out the app we built it for 🚀
 
 <p align="center">
   <a href="https://nutriscan.app/">
-    <img src="screenshots/download-banner.png" alt="Download NutriScan" width="100%" height="150"/>
+    <img src="screenshots/download-banner.png" alt="Download NutriScan" width="100%" >
   </a>
 </p>
 
