@@ -1,3 +1,8 @@
+## 1.0.1
+
+* Fixed Android haptic not working — added missing `VIBRATE` permission to `AndroidManifest.xml`
+* Fixed `createPredefined()` crash on Android API 26–28 — added fallback `createOneShot` effects
+
 ## 1.0.0
 
 * Initial release of `haptic_feedback_pro`
