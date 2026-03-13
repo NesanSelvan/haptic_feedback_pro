@@ -20,79 +20,31 @@ class HapticExamplePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HapticFeedbackPro hapticFeedbackPro = HapticFeedbackPro();
-
     return Scaffold(
       appBar: AppBar(title: const Text('Haptic Feedback Pro')),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           _SectionLabel('Notification'),
-          _HapticTile(
-            'Success',
-            FeedbackType.success,
-            Colors.green,
-            hapticFeedbackPro,
-          ),
-          _HapticTile(
-            'Warning',
-            FeedbackType.warning,
-            Colors.orange,
-            hapticFeedbackPro,
-          ),
-          _HapticTile(
-            'Error',
-            FeedbackType.error,
-            Colors.red,
-            hapticFeedbackPro,
-          ),
+          _HapticTile('Success', FeedbackType.success, Colors.green),
+          _HapticTile('Warning', FeedbackType.warning, Colors.orange),
+          _HapticTile('Error', FeedbackType.error, Colors.red),
           const SizedBox(height: 16),
           _SectionLabel('Impact'),
-          _HapticTile(
-            'Light',
-            FeedbackType.light,
-            Colors.blue.shade200,
-            hapticFeedbackPro,
-          ),
-          _HapticTile(
-            'Medium',
-            FeedbackType.medium,
-            Colors.blue.shade400,
-            hapticFeedbackPro,
-          ),
-          _HapticTile(
-            'Heavy',
-            FeedbackType.heavy,
-            Colors.blue.shade700,
-            hapticFeedbackPro,
-          ),
-          _HapticTile(
-            'Soft',
-            FeedbackType.soft,
-            Colors.purple.shade200,
-            hapticFeedbackPro,
-          ),
-          _HapticTile(
-            'Rigid',
-            FeedbackType.rigid,
-            Colors.purple.shade700,
-            hapticFeedbackPro,
-          ),
+          _HapticTile('Light', FeedbackType.light, Colors.blue.shade200),
+          _HapticTile('Medium', FeedbackType.medium, Colors.blue.shade400),
+          _HapticTile('Heavy', FeedbackType.heavy, Colors.blue.shade700),
+          _HapticTile('Soft', FeedbackType.soft, Colors.purple.shade200),
+          _HapticTile('Rigid', FeedbackType.rigid, Colors.purple.shade700),
           const SizedBox(height: 16),
           _SectionLabel('Selection'),
-          _HapticTile(
-            'Selection',
-            FeedbackType.selection,
-            Colors.teal,
-            hapticFeedbackPro,
-          ),
+          _HapticTile('Selection', FeedbackType.selection, Colors.teal),
           const SizedBox(height: 16),
           _SectionLabel('Vibration'),
           _HapticTile(
             'Vibration',
             FeedbackType.vibration,
             Colors.grey.shade700,
-            hapticFeedbackPro,
           ),
         ],
       ),
@@ -117,9 +69,8 @@ class _HapticTile extends StatelessWidget {
   final String label;
   final FeedbackType type;
   final Color color;
-  final HapticFeedbackPro haptic;
 
-  const _HapticTile(this.label, this.type, this.color, this.haptic);
+  const _HapticTile(this.label, this.type, this.color);
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +82,7 @@ class _HapticTile extends StatelessWidget {
           foregroundColor: Colors.white,
           minimumSize: const Size.fromHeight(52),
         ),
-        onPressed: () => haptic.trigger(type),
+        onPressed: () => HapticFeedbackPro.trigger(type),
         child: Text(label),
       ),
     );

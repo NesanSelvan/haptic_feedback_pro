@@ -24,18 +24,16 @@ void main() {
   });
 
   group('HapticFeedbackPro.trigger', () {
-    late HapticFeedbackPro plugin;
     late MockHapticFeedbackProPlatform mock;
 
     setUp(() {
-      plugin = HapticFeedbackPro();
       mock = MockHapticFeedbackProPlatform();
       HapticFeedbackProPlatform.instance = mock;
     });
 
     for (final type in FeedbackType.values) {
       test('triggers ${type.name}', () async {
-        await plugin.trigger(type);
+        await HapticFeedbackPro.trigger(type);
         expect(mock.lastTriggered, type.name);
       });
     }
