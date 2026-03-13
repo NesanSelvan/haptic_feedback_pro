@@ -35,15 +35,32 @@ class HapticFeedbackProPlugin : FlutterPlugin, MethodCallHandler {
     private fun trigger(feedbackType: String) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
         val effect = when (feedbackType) {
-            "light"     -> VibrationEffect.createPredefined(VibrationEffect.EFFECT_TICK)
-            "medium"    -> VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK)
-            "heavy"     -> VibrationEffect.createPredefined(VibrationEffect.EFFECT_HEAVY_CLICK)
-            "soft"      -> VibrationEffect.createPredefined(VibrationEffect.EFFECT_TICK)
-            "rigid"     -> VibrationEffect.createPredefined(VibrationEffect.EFFECT_HEAVY_CLICK)
-            "success"   -> VibrationEffect.createPredefined(VibrationEffect.EFFECT_DOUBLE_CLICK)
+            "light", "soft", "selection" -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                    VibrationEffect.createPredefined(VibrationEffect.EFFECT_TICK)
+                else
+                    VibrationEffect.createOneShot(20, VibrationEffect.DEFAULT_AMPLITUDE)
+            }
+            "medium" -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                    VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK)
+                else
+                    VibrationEffect.createOneShot(40, VibrationEffect.DEFAULT_AMPLITUDE)
+            }
+            "heavy", "rigid" -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                    VibrationEffect.createPredefined(VibrationEffect.EFFECT_HEAVY_CLICK)
+                else
+                    VibrationEffect.createOneShot(80, VibrationEffect.DEFAULT_AMPLITUDE)
+            }
+            "success" -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                    VibrationEffect.createPredefined(VibrationEffect.EFFECT_DOUBLE_CLICK)
+                else
+                    VibrationEffect.createWaveform(longArrayOf(0, 40, 60, 40), -1)
+            }
             "warning"   -> VibrationEffect.createWaveform(longArrayOf(0, 80, 60, 80), -1)
             "error"     -> VibrationEffect.createWaveform(longArrayOf(0, 100, 50, 100, 50, 100), -1)
-            "selection" -> VibrationEffect.createPredefined(VibrationEffect.EFFECT_TICK)
             "vibration" -> VibrationEffect.createOneShot(400, VibrationEffect.DEFAULT_AMPLITUDE)
             else -> return
         }

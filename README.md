@@ -4,6 +4,10 @@ A Flutter plugin for triggering rich haptic feedback on iOS and Android.
 
 Supports all native haptic types — impact, notification, selection, and full vibration. 🎯
 
+<p align="center">
+  <img src="screenshots/preview.png" alt="Haptic Feedback Pro Preview" width="320"/>
+</p>
+
 ---
 
 ## 📱 Platform Support
