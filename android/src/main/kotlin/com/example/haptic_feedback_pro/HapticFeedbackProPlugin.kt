@@ -2,9 +2,11 @@ package com.example.haptic_feedback_pro
 
 import android.content.Context
 import android.os.Build
+import android.os.VibrationAttributes
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
+import android.util.Log
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -25,8 +27,13 @@ class HapticFeedbackProPlugin : FlutterPlugin, MethodCallHandler {
     override fun onMethodCall(call: MethodCall, result: Result) {
         when (call.method) {
             "trigger" -> {
-                trigger(call.arguments as String)
-                result.success(null)
+                try {
+                    trigger(call.arguments as String)
+                    result.success(null)
+                } catch (e: Exception) {
+                    Log.e("HapticFeedbackPro", "Error triggering haptic: ${e.message}", e)
+                    result.error("HAPTIC_ERROR", e.message, null)
+                }
             }
             else -> result.notImplemented()
         }
@@ -70,7 +77,15 @@ class HapticFeedbackProPlugin : FlutterPlugin, MethodCallHandler {
     private fun vibrate(effect: VibrationEffect) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val manager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
-            manager.defaultVibrator.vibrate(effect)
+            val vibrator = manager.defaultVibrator
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                val attrs = VibrationAttributes.Builder()
+                    .setUsage(VibrationAttributes.USAGE_TOUCH)
+                    .build()
+                vibrator.vibrate(effect, attrs)
+            } else {
+                vibrator.vibrate(effect)
+            }
         } else {
             @Suppress("DEPRECATION")
             val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator

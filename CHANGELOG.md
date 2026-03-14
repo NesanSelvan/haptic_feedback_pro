@@ -1,3 +1,9 @@
+## 1.0.3
+
+* Improved Android haptic reliability — wrapped trigger in try/catch with proper error reporting via `result.error`
+* Added `VibrationAttributes` with `USAGE_TOUCH` for Android 13+ (API 33+) for better haptic classification
+* Used `VibratorManager.defaultVibrator` correctly on Android 12+ (API 31+) instead of calling vibrate directly on the manager
+
 ## 1.0.2
 
 * Updated README section
